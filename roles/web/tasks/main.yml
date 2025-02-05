@@ -1,0 +1,21 @@
+- name: Install package
+  apt:
+    name: "{{ package_name }}"
+    state: present
+
+- name: Copy template file to host
+  template:
+    src: "{{ template_name }}"
+    dest: "/var/www/html/{{ template_name }}"
+  vars:
+    message: "{{ template_message }}"
+  notify: Copy files to the host using loop
+
+# - name: Copy files to the host using loop
+#   template:
+#     src: "{{ item }}"
+#     dest: "/var/www/html/{{ item }}"
+#   vars:
+#     message: "{{ template_message }}"
+#   loop: "{{ files_to_copy }}"
+#   notify: Restart Service

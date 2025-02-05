@@ -1,0 +1,27 @@
+- name: play1
+  hosts: web_servers
+  tasks:
+    - name: Update package cache
+      apt:
+        update_cache: yes
+
+    - name: Install the latest version of Nginx
+      apt:
+        name: nginx
+        state: latest
+        
+
+    - name: Copy custom index.html to web root
+      copy:
+        src: ./index.html
+        dest: /var/www/html/index.html
+        owner: iti
+        group: iti
+        mode: '0644'
+    
+    - name: rest
+      service:
+        name: nginx
+        state: restarted
+        use: service
+        

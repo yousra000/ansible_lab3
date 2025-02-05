@@ -1,0 +1,6 @@
+package_name: "nginx" 
+template_name: "file.html.j2"
+template_message: "hello" 
+files_to_copy:
+  - "file1.html"
+  - "file2.html"

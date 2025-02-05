@@ -1,0 +1,11 @@
+- name: Copy files to the host using loop
+  copy:
+    src: "{{ item }}"
+    dest: "/var/www/html/{{ item }}"
+  loop: "{{ files_to_copy }}"
+  notify: Restart Service
+
+- name: Restart Service
+  service:
+    name: "{{ package_name }}"
+    state: restarted
